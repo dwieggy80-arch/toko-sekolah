@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.style.backgroundColor = 'var(--secondary-color)';
                 cartCounter.style.transform = 'scale(1)';
             }, 1500); // 1.5 detik
-            // Variabel untuk menyimpan item keranjang
+           // Variabel untuk menyimpan item keranjang
 let keranjang = [];
 
 function tambahKeKeranjang(namaProduk, harga) {
@@ -58,15 +58,28 @@ function tambahKeKeranjang(namaProduk, harga) {
         kuantitas: 1
     });
 
-    // 2. Hitung total item
+    // 2. Hitung total item (untuk ikon keranjang)
     let totalItem = keranjang.length;
 
-    // 3. Perbarui tampilan di HTML
+    // 3. Hitung TOTAL HARGA DARI SEMUA ITEM DI KERANJANG
+    let totalHargaBelanja = 0;
+    
+    // Perulangan untuk menjumlahkan harga semua item di keranjang
+    for (let item of keranjang) {
+        // Karena kuantitas saat ini adalah 1, kita hanya menjumlahkan harga
+        totalHargaBelanja += item.harga * item.kuantitas; 
+    }
+
+    // 4. Perbarui tampilan JUMLAH ITEM di HTML (ID keranjang-jumlah)
     document.getElementById('keranjang-jumlah').innerText = totalItem;
 
+    // 5. Perbarui tampilan TOTAL HARGA di HTML (ID total-harga)
+    document.getElementById('total-harga').innerText = totalHargaBelanja.toLocaleString('id-ID'); 
+    // .toLocaleString() agar angka memiliki format ribuan (misalnya 150.000)
+
     console.log(keranjang); // Cek isi keranjang di console
-    alert(namaProduk + " telah ditambahkan ke keranjang!");
-}
+    alert(namaProduk + " telah ditambahkan ke keranjang! Total: Rp " + totalHargaBelanja.toLocaleString('id-ID'));
+} 
         });
     });
 });
