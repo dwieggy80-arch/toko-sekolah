@@ -47,6 +47,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.style.backgroundColor = 'var(--secondary-color)';
                 cartCounter.style.transform = 'scale(1)';
             }, 1500); // 1.5 detik
+            // Variabel untuk menyimpan item keranjang
+let keranjang = [];
+
+function tambahKeKeranjang(namaProduk, harga) {
+    // 1. Tambahkan item baru ke array keranjang
+    keranjang.push({
+        nama: namaProduk,
+        harga: harga,
+        kuantitas: 1
+    });
+
+    // 2. Hitung total item
+    let totalItem = keranjang.length;
+
+    // 3. Perbarui tampilan di HTML
+    document.getElementById('keranjang-jumlah').innerText = totalItem;
+
+    console.log(keranjang); // Cek isi keranjang di console
+    alert(namaProduk + " telah ditambahkan ke keranjang!");
+}
         });
     });
 });
