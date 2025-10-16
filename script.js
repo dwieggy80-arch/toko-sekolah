@@ -47,15 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.style.backgroundColor = 'var(--secondary-color)';
                 cartCounter.style.transform = 'scale(1)';
             }, 1500); // 1.5 detik
-           // Variabel untuk menyimpan item keranjang
-let keranjang = [];
+           let keranjang = [];
 
 function tambahKeKeranjang(namaProduk, harga) {
     // 1. Tambahkan item baru ke array keranjang
     keranjang.push({
         nama: namaProduk,
         harga: harga,
-        kuantitas: 1
+        kuantitas: 1 // Anggap kuantitas awal selalu 1
     });
 
     // 2. Hitung total item (untuk ikon keranjang)
@@ -64,22 +63,21 @@ function tambahKeKeranjang(namaProduk, harga) {
     // 3. Hitung TOTAL HARGA DARI SEMUA ITEM DI KERANJANG
     let totalHargaBelanja = 0;
     
-    // Perulangan untuk menjumlahkan harga semua item di keranjang
+    // Perulangan untuk menjumlahkan harga semua item
     for (let item of keranjang) {
-        // Karena kuantitas saat ini adalah 1, kita hanya menjumlahkan harga
         totalHargaBelanja += item.harga * item.kuantitas; 
     }
 
-    // 4. Perbarui tampilan JUMLAH ITEM di HTML (ID keranjang-jumlah)
+    // 4. Perbarui tampilan JUMLAH ITEM (ID: keranjang-jumlah)
     document.getElementById('keranjang-jumlah').innerText = totalItem;
 
-    // 5. Perbarui tampilan TOTAL HARGA di HTML (ID total-harga)
+    // 5. Perbarui tampilan TOTAL HARGA (ID: total-harga)
     document.getElementById('total-harga').innerText = totalHargaBelanja.toLocaleString('id-ID'); 
-    // .toLocaleString() agar angka memiliki format ribuan (misalnya 150.000)
-
-    console.log(keranjang); // Cek isi keranjang di console
-    alert(namaProduk + " telah ditambahkan ke keranjang! Total: Rp " + totalHargaBelanja.toLocaleString('id-ID'));
-} 
+    
+    console.log(keranjang); 
+    // Anda bisa menghapus alert ini nanti, ini hanya untuk memastikan fungsi berjalan:
+    alert(namaProduk + " berhasil ditambahkan! Total saat ini: Rp " + totalHargaBelanja.toLocaleString('id-ID'));
+}
         });
     });
 });
